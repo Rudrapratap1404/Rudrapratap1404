@@ -1,0 +1,185 @@
+\documentclass[a4paper,11pt,twocolumn]{article}
+\usepackage[a4paper,left=1.5cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{lmodern}
+\usepackage{watermark} 
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc}
+\usepackage{karnaugh-map}
+\usepackage{tikz}
+\usepackage{harvard}
+\usepackage{amsfonts}
+\graphicspath{{/storage/emulated/0/Download/FWC/Latex/figs}}
+\usepackage[colorlinks,linkcolor={black},citecolor={blue!80!black},urlcolor={blue!80!black}]{hyperref}
+\title{\textbf{\textsc{VERIFICATION OF BOOLEAN IDENTITIES}}}
+\author{\textbf{\textit{\teflipflopxtbf{Rudra Pratap Singh}}}}
+\begin{document}
+
+\date{}
+\maketitle
+\tableofcontents
+
+
+
+\section{PROBLEM}
+\textbf{(GATE CS-2008)}
+\textbf{Q.5} In the Karnaugh map shown below, X denotes a don't care term. What is the minimal form of the function represented by the Karnaugh map?
+
+
+\begin{karnaugh-map}[4][4][1][][]
+    \maxterms{3,5,6,7,11,13,14,15}
+    \minterms{0,1,2,8,9}
+    \terms{4,10,12}{X} 
+    % note: posistion for start of \draw is (0, Y) where Y is
+    % the Y size(number of cells high) in this case Y=2
+    \draw[color=black, ultra thin] (0, 4) --
+    node [pos=0.7, above right, anchor=south west] {$ba$} % Y label
+    node [pos=0.7, below left, anchor=north east] {$cd$} % X label
+    ++(135:1);
+        
+    \end{karnaugh-map}
+\begin{enumerate}[label=(\Alph*)]
+	\item $ b'd'+a'd' $
+	\item $ a'b'+b'd'+a'bd' $
+	\item $ b'd'+a'bd' $
+	\item $ a'b'+b'd'+a'd' $
+
+ \begin{karnaugh-map}[4][4][1][Table 1][]
+    \maxterms{3,5,6,7,11,13,14,15}
+    \minterms{0,1,2,8,9}
+    \terms{4,10,12}{X} 
+    \implicantedge{0}{1}{8}{9}
+    \tikzset{
+        greenimplicant/.style={
+            pattern color=green,
+            pattern=north west lines,
+        },
+    }
+
+    % Mark implicants with a green pattern
+    \implicantedge{0}{1}{8}{9}
+    \color{green}
+    % note: posistion for start of \draw is (0, Y) where Y is
+    % the Y size(number of cells high) in this case Y=2
+    \draw[color=black, ultra thin] (0, 4) --
+    node [pos=0.7, above right, anchor=south west] {$ba$} % Y label
+    node [pos=0.7, below left, anchor=north east] {$cd$} % X label
+    ++(135:1);
+        
+    \end{karnaugh-map}
+ 
+\begin{karnaugh-map}[4][4][1][Table 2][]
+    \maxterms{3,5,6,7,11,13,14,15}
+    \minterms{0,1,2,8,9}
+    \terms{4,10,12}{X} 
+     \implicantcorner 
+     
+
+    % note: posistion for start of \draw is (0, Y) where Y is
+    % the Y size(number of cells high) in this case Y=2
+    \draw[color=black, ultra thin] (0, 4) --
+    node [pos=0.7, above right, anchor=south west] {$ba$} % Y label
+    node [pos=0.7, below left, anchor=north east] {$cd$} % X label
+    ++(135:1);
+\end{karnaugh-map}
+
+\bigskip
+                        
+One group is $\{0000, 0001, 1000, 1001\}$ (Table 1) which gives $a'd'$. \\
+Another group consists of $\{0000, 0010, 1000, 1010\}$ (Table 2) which gives $b'd'$. \\
+Hence, the correct option is \textbf{a)}.
+
+
+
+
+\end{enumerate}
+\bigskip
+
+\section{COMPONENTS}
+	\begin{tabularx}{0.45\textwidth} {  
+  | >{\centering\arraybackslash}X  
+  | >{\centering\arraybackslash}X  
+  | >{\centering\arraybackslash}X | } 
+\hline 
+\textbf{Component} &  \textbf{Value} & \textbf{Quantity}\\ 
+\hline 
+Arduino & UNO & 1 \\   
+\hline 
+Bread board & - & 1 \\ 
+\hline
+Jumper wires & M-M & 10 \\ 
+\hline 
+LED & - & 1\\ 
+
+\hline 
+\end{tabularx}
+ 
+\bigskip 
+
+\section{TRUTH TABLE}
+The Truth Table for the identity is as follows:
+\begin{enumerate}[label=\textbf{(\Alph*})]
+	\item \textbf{ $ Y=b'd'+a'd' $} \\
+\bigskip
+\begin{table}[ht!]
+	\centering
+\begin{tabular}{ |c |c |c |c |c |c |} 
+\hline 
+\newline 
+	\textbf{a} & \textbf{b} & \textbf{d} & \textbf{Y} \\ 
+\hline  
+	0 & 0 & 0 &1 \\   
+	0 & 0 & 1 &0 \\  
+	0 & 1 & 0 &1 \\  
+	0 & 1 & 1 &0 \\  
+	1 & 0 & 0 &1 \\  
+	1 & 0 & 1 &0 \\  
+	1 & 1 & 0 &0 \\  
+	1 & 1 & 1 &0 \\  
+\hline 
+\end{tabular}
+	\caption{}
+\end{table}
+\bigskip
+\bigskip
+
+
+\end{enumerate}
+\section{ARDUINO CONNECTIONS}
+
+1) The connections taken from Arduino as Input and Output is as follows:
+\begin{table}[ht!] 
+    \centering 
+    \begin{tabular}{|c|c|c|c|c|c|c|c|} 
+    \hline 
+       Input & $a$&$b$&$d$&$Y$\\ 
+       \hline 
+    Arduino & 3&4&5&6\\ 
+    \hline 
+    \end{tabular} 
+    \caption{} 
+\end{table} 
+\\
+2) The  input \textbf{a,b,c} here are connected to Arduino D3,D4,D5 pins.\\
+3) The  output \textbf{Y} here are connected to Arduino D6 pins.\\
+4) The values for these inputs are conncted either to GND or 5V according to the truth table.\\
+\section{CODE}
+\paragraph{}
+	The arduino code can be downloaded from the below link.
+\begin{center} 
+\fbox{\parbox{8.5cm}{\url{https://github.com/Rudrapratap1404/Rudrapratap1404/blob/main/ide/code/src/GATE2008.cpp}}} 
+\end{center}
+
+
+\end{document}
